@@ -2,15 +2,21 @@ $(ready);
 
 function ready(){
   console.log('js and jq ready!');
-  $('#submit').on('click', function(){
-    addEmployee();
-  });
-  $('#clear').on('click', function(){
-    $('tbody').empty();
-  });
+  clickHandler();
 }
 
 let arrEmployee = [];
+let monthlyCost = 0;
+
+function clickHandler(){
+  $('#submit').on('click', addEmployee);
+  $('#clear').on('click', function () {
+    $('tbody').empty();
+    arrEmployee = [];
+    $('#monthly').text('$0');
+  });
+  $('table').on('click', '.delete', delEmployee);
+}
 
 function addEmployee(){
   // declares variables with the value of the text inputs
@@ -28,6 +34,12 @@ function addEmployee(){
   let elSalary = $(`<td>${salary}</td>`);
   let elDelBtn = $(`<td><button class="delete">Delete</button></td>`);
 
+  // I love this if statement
+  if(!first || !last || !id || !title || !salary){
+    console.log('Error! Inputs cannot be empty.');
+    return;
+  }
+
   arrEmployee.push({
     first: first,
     last: last,
@@ -35,12 +47,6 @@ function addEmployee(){
     title: title,
     salary: salary
   });
-
-  // I love this if statement
-  if(!first || !last || !id || !title || !salary){
-    console.log('Error! Inputs cannot be empty.');
-    return;
-  }
   
   $('tbody').append(elTr);
   $('tbody tr:last-child').append(elFirst);
@@ -55,20 +61,15 @@ function addEmployee(){
   $('#id').val('');
   $('#title').val('');
   $('#salary').val('');
-  
-  $('.delete').on('click', function (event) {
-    delEmployee();
-  });
 
   refreshMonthlyCost();
 }
 
 function delEmployee(){
-  let delEl = event.target;
+  let delElIndex = $(event.target).closest('tbody tr').index();
+  arrEmployee.splice(delElIndex, 1);
 
-  
-
-  $(delEl).parent().parent().remove();
+  $(event.target).closest('tbody tr').remove();
   refreshMonthlyCost();
 }
 
@@ -78,9 +79,9 @@ function refreshMonthlyCost(){
     currency: 'USD',
     minimumFractionDigits: 2
   });
-  let monthlyCost = 0;
-  for (let i = 0; i < arrEmployee.length; i++) {
-    let monthlySalary = parseFloat(arrEmployee[i].salary / 12);
+  monthlyCost = 0;
+  for(let employee of arrEmployee){
+    let monthlySalary = parseFloat(employee.salary / 12);
     monthlyCost += monthlySalary;
     $('#monthly').text(formatter.format(monthlyCost));
   }

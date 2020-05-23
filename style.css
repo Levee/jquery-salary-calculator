@@ -1,0 +1,53 @@
+body {
+  background-color: #c0c0c0;
+}
+
+table {
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  border: 1px solid #000;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: azure;
+}
+
+th {
+  border-bottom: 1px solid #000;
+  border-right: 1px solid #000;
+}
+
+th, td {
+  padding: 5px;
+}
+
+thead {
+  background-color: aquamarine;
+  color: #000;
+}
+
+td {
+  background-color: azure;
+  text-align: center;
+  border-bottom: dashed burlywood;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+#clear {
+  user-select: none;
+  cursor: pointer;
+}
+
+#clear:hover {
+  background-color: brightness(90%);
+}
+
+#clear:active {
+  border-bottom: none;
+  border-top: 1px solid #000;
+  border-right: none;
+  border-left: 1px solid #000;
+}
