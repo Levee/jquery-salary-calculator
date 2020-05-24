@@ -8,6 +8,13 @@ function ready(){
 let arrEmployee = [];
 let monthlyCost = 0;
 
+// sets up the formatting for the #monthly element
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 2
+});
+
 function clickHandler(){
   // handles when the submit, clear, and delete buttons are clicked
   $('#submit').on('click', addEmployee);
@@ -35,16 +42,16 @@ function addEmployee(){
   const elLast = $(`<td>${last}</td>`);
   const elId = $(`<td>${id}</td>`);
   const elTitle = $(`<td>${title}</td>`);
-  const elSalary = $(`<td>${salary}</td>`);
+  const elSalary = $(`<td>${formatter.format(salary)}</td>`);
   const elDelBtn = $(`<td class="delete">X</td>`);
   // I love this if statement :)
   if(!first || !last || !id || !title || !salary){
     console.log('Error! Inputs cannot be empty.');
-    for(let input of $('input')){
-      if($('input').val() === ''){
-        $('input').css('backgrounnd-color', '#ff0000');
-      }
-    }
+    // for(let input of $('input')){
+    //   if($('input').val() === ''){
+    //     $('input').css('backgrounnd-color', '#ff0000');
+    //   }
+    // }
     return;
   }
   // checks if the input id is already used on the table. if so, return early
@@ -96,12 +103,6 @@ function refreshMonthlyCost(){
     $('#monthly').parent().css('background-color', '#008000');
     return;
   }
-  // sets up the formatting for the #monthly element
-  const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2
-  });
   monthlyCost = 0;
   // loops through all employee objects in the array and adds them to monthlyCost
   for(let employee of arrEmployee){
