@@ -1,48 +1,64 @@
 body {
-  background-color: #c0c0c0;
+  background-color: lightblue;
 }
 
-table {
+h4 {
+  color: #fff;
+  background-color: #008000;
+}
+
+#input {
+  text-align: center;
+}
+
+#data {
+  table-layout: fixed;
   width: 90%;
-  margin-left: 5%;
-  margin-right: 5%;
+  margin: 0 auto;
   border: 1px solid #000;
+  border-right: 4px solid #000;
+  border-bottom: 4px solid #000;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: azure;
 }
 
 th {
+  background-color: aquamarine;
   border-bottom: 1px solid #000;
   border-right: 1px solid #000;
 }
 
 th, td {
   padding: 5px;
+  width: 19%;
 }
 
 thead {
-  background-color: aquamarine;
   color: #000;
 }
 
 td {
+  background-color: lightblue;
+  border-right: 1px solid grey;
+  border-bottom: 1px solid grey;
   background-color: azure;
   text-align: center;
-  border-bottom: dashed burlywood;
 }
 
 tr:last-child td {
-  border-bottom: none;
+  border-bottom: 1px solid transparent;
 }
 
-#clear {
+#clear, .delete {
+  border-bottom: 1px solid initial;
   user-select: none;
   cursor: pointer;
+  width: 5%;
 }
 
-#clear:hover {
-  background-color: brightness(90%);
+#clear:hover, .delete:hover {
+  filter: brightness(90%);
 }
 
 #clear:active {
@@ -50,4 +66,11 @@ tr:last-child td {
   border-top: 1px solid #000;
   border-right: none;
   border-left: 1px solid #000;
+}
+
+.delete:active {
+  border-bottom: none;
+  border-top: 1px solid grey;
+  border-right: none;
+  border-left: 1px solid grey;
 }
