@@ -11,12 +11,12 @@ let monthlyCost = 0;
 function clickHandler(){
   // handles when the submit, clear, and delete buttons are clicked
   $('#submit').on('click', addEmployee);
-  $('#clear').on('click', function () {
-    $('tbody').empty();
+  $('table').on('click', '#clear', function () {
+    $('tbody tr').fadeOut(500, function(){$(this).remove()});
     arrEmployee = [];
-    $('#monthly').text('$0.00');
+    refreshMonthlyCost();
   });
-  $('#data').on('click', '.delete', function () {
+  $('#data').on('click', '.delete', function(){
     delEmployee();
     refreshMonthlyCost();
   });
@@ -36,15 +36,21 @@ function addEmployee(){
   const elId = $(`<td>${id}</td>`);
   const elTitle = $(`<td>${title}</td>`);
   const elSalary = $(`<td>${salary}</td>`);
-  const elDelBtn = $(`<td class="delete">x</td>`);
+  const elDelBtn = $(`<td class="delete">X</td>`);
   // I love this if statement :)
   if(!first || !last || !id || !title || !salary){
     console.log('Error! Inputs cannot be empty.');
+    for(let input of $('input')){
+      if($('input').val() === ''){
+        $('input').css('backgrounnd-color', '#ff0000');
+      }
+    }
     return;
   }
   // checks if the input id is already used on the table. if so, return early
   for(let i of arrEmployee){
     if(id === i.id){
+      $('#id').css('background-color', 'red');
       console.log('Error! Employee with that ID already exists.');
       return;
     }

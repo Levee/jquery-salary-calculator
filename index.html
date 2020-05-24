@@ -11,33 +11,33 @@
 <body>
   <div id="wrapper">
     <h2>Add Employee</h2>
-    <div id="input">
-      <input id="first" type="text" placeholder="First Name"/>
-      <input id="last" type="text" placeholder="Last Name"/>
-      <input id="id" type="number" placeholder="ID"/>
-      <input id="title" type="text" placeholder="Title"/>
-      <input id="salary" type="number" placeholder="Annual Salary"/>
+    <div id="inputs">
+      <input id="first" type="text" placeholder="First Name" maxlength="35" size="15"/>
+      <input id="last" type="text" placeholder="Last Name" maxlength="35" size="15"/>
+      <input id="id" type="number" placeholder="ID" min="1" max="999999"/>
+      <input id="title" type="text" placeholder="Title" maxlength="35" size="15"/>
+      <input id="salary" type="number" placeholder="Annual Salary" min="0" max="99999999999" size="auto"/>
       <button id="submit">Submit</button>
     </div>
     <h2>Employees</h2>
-    <div>
-      <table id="data">
-        <thead>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Annual Salary</th>
-            <th id="clear">X</th>
-          </tr>
-        </thead>
-        <tbody>
-          
-        </tbody>
-      </table>
-      <h4>Total Monthly Cost: <span id="monthly">$0.00</span></h4>
-    </div>
+  </div>
+  <div id="data-wrapper">
+    <table id="data">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Annual Salary</th>
+          <th id="clear">X</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+      </tbody>
+    </table>
+    <div class="h4-wrapper"><h4>Total Monthly Cost: <span id="monthly">$0.00</span></h4></div>
   </div>
 </body>
 </html>
